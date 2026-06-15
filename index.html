@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Hospitalar - Painel de Gestão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="barra-superior">
+        <span id="lblUser">Usuário: Carregando...</span>
+        <button id="btnSair">Sair</button>
+    </header>
+
+    <nav class="abas-navegacao">
+        <button class="aba-btn ativa" data-aba="nova-transferencia">Nova Transferência</button>
+        <button class="aba-btn" data-aba="pendentes">Transferências Pendentes</button>
+        <button class="aba-btn" data-aba="concluidas">Transferências Concluídas</button>
+    </nav>
+
+    <main class="conteudo-principal">
+        
+        <section id="nova-transferencia" class="aba-conteudo ativa">
+            <form id="formTransferencia" class="grade-formulario">
+                <div class="coluna-form">
+                    <div class="campo"><label>Data Ent. Emergência:</label><input type="text" id="txtDataEnt" placeholder="DD/MM/AAAA"></div>
+                    <div class="campo"><label>Hora Ent. Emergência:</label><input type="text" id="txtHoraEnt" placeholder="HH:MM"></div>
+                    <div class="campo"><label>Início Transferência:</label><input type="text" id="txtIniTrans"></div>
+                    <div class="campo"><label>Chefe de Equipe:</label><input type="text" id="txtChefe"></div>
+                    <div class="campo"><label>Residente:</label><input type="text" id="txtResidente"></div>
+                    <div class="campo"><label>Regulação:</label><input type="text" id="txtRegulacao"></div>
+                    <div class="campo"><label>Origem / Ala:</label><input type="text" id="txtOrigem"></div>
+                    <div class="campo"><label>Leito Origem:</label><input type="text" id="txtLeitoOrigem"></div>
+                    <div class="campo"><label>Destino / Ala:</label><input type="text" id="txtDestino"></div>
+                    <div class="campo"><label>Leito Destino:</label><input type="text" id="txtLeitoDestino"></div>
+                </div>
+
+                <div class="coluna-form">
+                    <div class="campo"><label>Especialidade:</label><input type="text" id="txtEspecialidade"></div>
+                    <div class="campo"><label>Nº Prontuário *:</label><input type="text" id="txtProntuario" required></div>
+                    <div class="campo"><label>Nome do Paciente *:</label><input type="text" id="txtPaciente" required></div>
+                    <div class="campo"><label>Horário Avisado:</label><input type="text" id="txtHoraAvisado"></div>
+                    <div class="campo"><label>Enfermeiro Ciente:</label><input type="text" id="txtEnfermeiro"></div>
+                    <div class="campo"><label>Checado por Plantonista:</label><input type="text" id="txtPlantonista"></div>
+                    <div class="campo"><label>Data Chegada Leito:</label><input type="text" id="txtDataCheg"></div>
+                    <div class="campo"><label>Horário Chegada Leito:</label><input type="text" id="txtHorarioCheg"></div>
+                    <div class="campo">
+                        <label>Status Inicial:</label>
+                        <select id="cbStatus">
+                            <option value="PENDING" selected>PENDING</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="btnSalvar">✓ Salvar Nova Transferência</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="pendentes" class="aba-conteudo">
+            <div class="overflow-tabela">
+                <table id="tabelaPendentes">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="concluidas" class="aba-conteudo">
+            <div class="overflow-tabela">
+                <table id="tabelaConcluidas">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
