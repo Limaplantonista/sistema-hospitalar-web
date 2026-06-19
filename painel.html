@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Hospitalar - Painel de Gestão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="barra-superior">
+        <span id="lblUser">Usuário: Carregando...</span>
+        <button id="btnSair">Sair</button>
+    </header>
+
+    <nav class="abas-navegacao-principal">
+        <button class="aba-principal-btn ativa" data-aba-principal="bloco-transferencias">Transferências</button>
+        <button class="aba-principal-btn" data-aba-principal="bloco-prescritores">Lista de Prescritores</button>
+    </nav>
+     <!-- ==========================================
+           BLOCO 1: ABA PRINCIPAL DE TRANSFERÊNCIAS 
+          ========================================== -->
+    <div id="bloco-transferencias" class="aba-principal-conteudo ativa">
+    
+    <nav class="abas-navegacao">
+        <button class="aba-btn ativa" data-aba="nova-transferencia">Nova Transferência</button>
+        <button class="aba-btn" data-aba="pendentes">Transferências Pendentes</button>
+        <button class="aba-btn" data-aba="concluidas">Transferências Concluídas</button>
+    </nav>
+
+    <main class="conteudo-principal">
+        
+        <section id="nova-transferencia" class="aba-conteudo ativa">
+            <form id="formTransferencia" class="grade-formulario">
+                <div class="coluna-form">
+                    <div class="campo"><label>Data Ent. Emergência:</label><input type="text" id="txtDataEnt" placeholder="DD/MM/AAAA"></div>
+                    <div class="campo"><label>Hora Ent. Emergência:</label><input type="text" id="txtHoraEnt" placeholder="HH:MM"></div>
+                    <div class="campo"><label>Início Transferência:</label><input type="text" id="txtIniTrans" placeholder="DD/MM/AAAA"></div>
+                    <div class="campo"><label>Chefe de Equipe:</label><input type="text" id="txtChefe"></div>
+                    <div class="campo"><label>Residente:</label><input type="text" id="txtResidente"></div>
+                    <div class="campo">
+                       <label>Regulação:</label>
+                       <select id="txtRegulacao" required>
+                           <option value="" disabled selected>Selecione o tipo regulacão...</option>
+                           <option value="EMERGENCIA">EMERGENCIA</option>
+                           <option value="ELETIVO">ELETIVO</option>
+                           <option value="T. INTERNA">T. INTERNA</option>
+                           <option value="T. EXTERNO">T. EXTERNO</option>
+                        </select>
+                     </div>
+
+                     <div class="campo">
+                        <label>Origem / Ala:</label>
+                        <select id="txtOrigem" required>
+                            <option value="" disabled selected>Selecione a ala de origem...</option>
+                            <option value="ALA A HEMATO">ALA A HEMATO</option>
+                            <option value="ALA A REUMATO">ALA A REUMATO</option>
+                            <option value="ALA A CME">ALA A CME</option>
+                            <option value="ALA A ORTOPEDIA">ALA A ORTOPEDIA</option>
+                            <option value="ALA B TX RENAL">ALA B TX RENAL</option>
+                            <option value="ALA C DIGESTIVA">ALA C DIGESTIVA</option>
+                            <option value="ALA C CIRURGIA GERAL">ALA C CIRURGIA GERAL</option>
+                            <option value="ALA C ISOLAMENTO">ALA C ISOLAMENTO</option>
+                            <option value="ALA D DIGESTIVA">ALA D DIGESTIVA</option>
+                            <option value="ALA D GASTRO">ALA D GASTRO</option>
+                            <option value="ALA D TX HEPÁTICO">ALA D TX HEPÁTICO</option>
+                            <option value="ALA D ISOLAMENTO">ALA D ISOLAMENTO</option>
+                            <option value="ALA E CM">ALA E CM</option>
+                            <option value="ALA F GINECO/PLASTICA/MASTO">ALA F GINECO/PLASTICA/MASTO</option>
+                            <option value="ALA F CM">ALA F CM</option>
+                            <option value="ALA F CME">ALA F CME</option>
+                            <option value="ALA F ENDOCRINO">ALA F ENDOCRINO</option>
+                            <option value="ALA F OTORRINO/BUCO/CCP">ALA F OTORRINO/BUCO/CCP</option>
+                            <option value="ALA F NEFRO">ALA F NEFRO</option>
+                            <option value="ALA F ISOLAMENTO">ALA F ISOLAMENTO</option>
+                            <option value="ALA G NXC">ALA G NXC</option>
+                            <option value="ALA G ISOLAMENTO">ALA G ISOLAMENTO</option>
+                            <option value="ALA H PED">ALA H PED</option>
+                            <option value="ALA H OBSTETRICIA">ALA H OBSTETRICIA</option>
+                            <option value="ALA I UCE">ALA I UCE</option>
+                            <option value="ALA J URO">ALA J URO</option>
+                            <option value="ALA J VASCULAR">ALA J VASCULAR</option>
+                            <option value="ALA J ISOLAMENTO">ALA J ISOLAMENTO</option>
+                            <option value="ALA K NEURO ELETIVA">ALA K NEURO ELETIVA</option>
+                            <option value="ALA K NEURO EMERG.">ALA K NEURO EMERG.</option>
+                            <option value="ALA K POS OP">ALA K POS OP</option>
+                            <option value="3º ANDAR PRESC">3º ANDAR PRESC</option>
+                            <option value="UTI AZUL">UTI AZUL</option>
+                            <option value="UTI VERDE">UTI VERDE</option>
+                            <option value="UTI AMARELA">UTI AMARELA</option>
+                            <option value="UPAC">UPAC</option>
+                            <option value="AVCH">AVCH</option>
+                            <option value="UTIN">UTIN</option>
+                            <option value="UCINCO">UCINCO</option>
+                            <option value="UCINCA">UCINCA</option>
+                            <option value="UPC EMERGENCIA">UPC EMERGENCIA</option>
+                            <option value="UPO ELETIVA">UPO ELETIVA</option>
+                            <option value="SR ELETIVA">SR ELETIVA</option>
+                            <option value="AVCI">AVCI</option>
+                            <option value="PRE-PARTO">PRE-PARTO</option>
+                            <option value="SALA CRITICA">SALA CRITICA</option>
+                            <option value="UIB">UIB</option>
+                            <option value="UIB EXTRA">UIB EXTRA</option>
+                            <option value="MEDICAÇÃO">MEDICAÇÃO</option>
+                            <option value="MEDICAÇÃO EXT">MEDICAÇÃO EXT</option>
+                            <option value="ESTABILIZAÇÃO">ESTABILIZAÇÃO</option>
+                            <option value="ALA E ISOLAMENTO">ALA E ISOLAMENTO</option>
+                            <option value="ALA B ISOLAMENTO">ALA B ISOLAMENTO</option>
+                            <option value="ALA A ISOLAMENTO">ALA A ISOLAMENTO</option>
+                            <option value="SEE - ENDO">SEE - ENDO</option>
+                            <option value="SR IMAGEM">SR IMAGEM</option>
+                            <option value="ELETIVO">ELETIVO</option>
+                            <option value="EXTERNO">EXTERNO</option>
+                            <option value="SALA ADM /ALTA">SALA ADM /ALTA</option>
+                            <option value="HEMODINAMICA">HEMODINAMICA</option>
+                            <option value="CC">CC</option>
+                            <option value="EMERG. ESP 01">EMERG. ESP 01</option>
+                            <option value="EMERG.OBSTETRICA">EMERG.OBSTETRICA</option>
+                        </select>
+                    </div>
+                    
+                    <div class="campo"><label>Leito Origem:</label><input type="text" id="txtLeitoOrigem"></div>
+                    
+                    <!-- Campo Destino / Ala unificado com sua lista exata -->
+                    <div class="campo">
+                        <label>Destino / Ala:</label>
+                        <select id="txtDestino" required>
+                            <option value="" disabled selected>Selecione a ala de destino...</option>
+                            <option value="ALA A HEMATO">ALA A HEMATO</option>
+                            <option value="ALA A REUMATO">ALA A REUMATO</option>
+                            <option value="ALA A CME">ALA A CME</option>
+                            <option value="ALA A ORTOPEDIA">ALA A ORTOPEDIA</option>
+                            <option value="ALA B TX RENAL">ALA B TX RENAL</option>
+                            <option value="ALA C DIGESTIVA">ALA C DIGESTIVA</option>
+                            <option value="ALA C CIRURGIA GERAL">ALA C CIRURGIA GERAL</option>
+                            <option value="ALA C ISOLAMENTO">ALA C ISOLAMENTO</option>
+                            <option value="ALA D DIGESTIVA">ALA D DIGESTIVA</option>
+                            <option value="ALA D GASTRO">ALA D GASTRO</option>
+                            <option value="ALA D TX HEPÁTICO">ALA D TX HEPÁTICO</option>
+                            <option value="ALA D ISOLAMENTO">ALA D ISOLAMENTO</option>
+                            <option value="ALA E CM">ALA E CM</option>
+                            <option value="ALA F GINECO/PLASTICA/MASTO">ALA F GINECO/PLASTICA/MASTO</option>
+                            <option value="ALA F CM">ALA F CM</option>
+                            <option value="ALA F CME">ALA F CME</option>
+                            <option value="ALA F ENDOCRINO">ALA F ENDOCRINO</option>
+                            <option value="ALA F OTORRINO/BUCO/CCP">ALA F OTORRINO/BUCO/CCP</option>
+                            <option value="ALA F NEFRO">ALA F NEFRO</option>
+                            <option value="ALA F ISOLAMENTO">ALA F ISOLAMENTO</option>
+                            <option value="ALA G NXC">ALA G NXC</option>
+                            <option value="ALA G ISOLAMENTO">ALA G ISOLAMENTO</option>
+                            <option value="ALA H PED">ALA H PED</option>
+                            <option value="ALA H OBSTETRICIA">ALA H OBSTETRICIA</option>
+                            <option value="ALA I UCE">ALA I UCE</option>
+                            <option value="ALA J URO">ALA J URO</option>
+                            <option value="ALA J VASCULAR">ALA J VASCULAR</option>
+                            <option value="ALA J ISOLAMENTO">ALA J ISOLAMENTO</option>
+                            <option value="ALA K NEURO ELETIVA">ALA K NEURO ELETIVA</option>
+                            <option value="ALA K NEURO EMERG.">ALA K NEURO EMERG.</option>
+                            <option value="ALA K POS OP">ALA K POS OP</option>
+                            <option value="3º ANDAR PRESC">3º ANDAR PRESC</option>
+                            <option value="UTI AZUL">UTI AZUL</option>
+                            <option value="UTI VERDE">UTI VERDE</option>
+                            <option value="UTI AMARELA">UTI AMARELA</option>
+                            <option value="UPAC">UPAC</option>
+                            <option value="AVCH">AVCH</option>
+                            <option value="UTIN">UTIN</option>
+                            <option value="UCINCO">UCINCO</option>
+                            <option value="UCINCA">UCINCA</option>
+                            <option value="UPC EMERGENCIA">UPC EMERGENCIA</option>
+                            <option value="UPO ELETIVA">UPO ELETIVA</option>
+                            <option value="SR ELETIVA">SR ELETIVA</option>
+                            <option value="AVCI">AVCI</option>
+                            <option value="PRE-PARTO">PRE-PARTO</option>
+                            <option value="SALA CRITICA">SALA CRITICA</option>
+                            <option value="UIB">UIB</option>
+                            <option value="UIB EXTRA">UIB EXTRA</option>
+                            <option value="MEDICAÇÃO">MEDICAÇÃO</option>
+                            <option value="MEDICAÇÃO EXT">MEDICAÇÃO EXT</option>
+                            <option value="ESTABILIZAÇÃO">ESTABILIZAÇÃO</option>
+                            <option value="ALA E ISOLAMENTO">ALA E ISOLAMENTO</option>
+                            <option value="ALA B ISOLAMENTO">ALA B ISOLAMENTO</option>
+                            <option value="ALA A ISOLAMENTO">ALA A ISOLAMENTO</option>
+                            <option value="SEE - ENDO">SEE - ENDO</option>
+                            <option value="SR IMAGEM">SR IMAGEM</option>
+                            <option value="ELETIVO">ELETIVO</option>
+                            <option value="EXTERNO">EXTERNO</option>
+                            <option value="SALA ADM /ALTA">SALA ADM /ALTA</option>
+                            <option value="HEMODINAMICA">HEMODINAMICA</option>
+                            <option value="CC">CC</option>
+                            <option value="EMERG. ESP 01">EMERG. ESP 01</option>
+                            <option value="EMERG.OBSTETRICA">EMERG.OBSTETRICA</option>
+                        </select>
+                    </div>
+
+                    <div class="campo"><label>Leito Destino:</label><input type="text" id="txtLeitoDestino"></div>
+                </div>
+
+                <div class="coluna-form">
+                    <div class="campo">
+                        <label>Especialidade:</label>
+                        <select id="txtEspecialidade" required>
+                            <option value="" disabled selected>Selecione a especialidade...</option>
+                            <option value="BMF">BMF</option>
+                            <option value="CCP">CCP</option>
+                            <option value="CIRURGIA DIGESTIVA">CIRURGIA DIGESTIVA</option>
+                            <option value="CIRURGIA GERAL">CIRURGIA GERAL</option>
+                            <option value="CLINICA MEDICA">CLINICA MEDICA</option>
+                            <option value="CLINICA MEDICA EXTRA">CLINICA MEDICA EXTRA</option>
+                            <option value="CME(CLINICA MEDICA EXPANSAO) ">CME(CLINICA MEDICA EXPANSAO)</option>
+                            <option value="ENDOCRINOLOGIA">ENDOCRINOLOGIA</option>
+                            <option value="GASTROENTEROLOGIA">GASTROENTEROLOGIA</option>
+                            <option value="GINECOLOGIA">GINECOLOGIA</option>
+                            <option value="HEMATOLOGIA">HEMATOLOGIA</option>
+                            <option value="MASTOLOGIA">MASTOLOGIA</option>
+                            <option value="NEFROLOGIA">NEFROLOGIA</option>
+                            <option value="NEUROCIRURGIA">NEUROCIRURGIA</option>
+                            <option value="NRI">NRI</option>
+                            <option value="OBSTETRICIA">OBSTETRICIA</option>
+                            <option value="OFTALMO">OFTALMO</option>
+                            <option value="ORTOPEDIA">ORTOPEDIA</option>
+                            <option value="OTORRINO">OTORRINO</option>
+                            <option value="PEDIATRIA">PEDIATRIA</option>
+                            <option value="REUMALOGIA">REUMALOGIA</option>
+                            <option value="PROCTOLOGIA">PROCTOLOGIA</option>
+                            <option value="TX HEPATICO">TX HEPATICO</option>
+                            <option value="TX RENAL">TX RENAL</option>
+                            <option value="UCE">UCE</option>
+                            <option value="UROLOGIA">UROLOGIA</option>
+                            <option value="VASCULAR">VASCULAR</option>
+                            <option value="CIRURGIA ONCOLOGIA">CIRURGIA ONCOLOGIA</option>
+                            <option value="UROLOGIA MULTIRAO">UROLOGIA MULTIRAO</option>
+                            <option value="NEONATOLOGIA">NEONATOLOGIA</option>
+                            <option value="UTI">UTI</option>
+                            <option value="AVCI">AVCI</option>
+                            <option value="AVCH">AVCH</option>
+                            <option value="UPO">UPO</option>
+                            <option value="PRESCRITOR 1º ANDAR">PRESCRITOR 1º ANDAR</option>
+                            <option value="PRESCRITOR 3º ANDAR">PRESCRITOR 3º ANDAR</option>
+                            <option value="PRESC EMERG">PRESC EMERG</option>
+                            <option value="UPC EMERG">UPC EMERG</option>
+                        </select>
+                    </div>
+                    <div class="campo"><label>Nº Prontuário *:</label><input type="text" id="txtProntuario" required></div>
+                    <div class="campo"><label>Nome do Paciente *:</label><input type="text" id="txtPaciente" required></div>
+                    <div class="campo"><label>Horário Avisado:</label><input type="text" id="txtHoraAvisado"></div>
+                    <div class="campo"><label>Enfermeiro Ciente:</label><input type="text" id="txtEnfermeiro"></div>
+                    <div class="campo"><label>Checado por Plantonista:</label><input type="text" id="txtPlantonista"></div>
+                    <div class="campo"><label>Data Chegada Leito:</label><input type="text" id="txtDataCheg"></div>
+                    <div class="campo"><label>Horário Chegada Leito:</label><input type="text" id="txtHorarioCheg"></div>
+                    <div class="campo">
+                        <label>Status Inicial:</label>
+                        <select id="cbStatus">
+                            <option value="PENDING" selected>PENDING</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                        </select>
+                    </div>
+                      <button type="submit" id="btnSalvar">Salvar Transferência</button>
+
+                </div>
+            </form>
+        </section>
+
+        <section id="pendentes" class="aba-conteudo">
+            <div class="overflow-tabela">
+                <table id="tabelaPendentes">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="concluidas" class="aba-conteudo">
+            <div class="overflow-tabela">
+                <table id="tabelaConcluidas">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+       </section>
+        
+    </div> <!-- ADICIONADO: Fecha o bloco de transferências corretamente -->
+
+    <!-- MODIFICADO: O bloco de prescritores deve ficar DENTRO do main, não fora dele -->
+    <div id="bloco-prescritores" class="aba-principal-conteudo">
+    
+    <!-- SUB-ABAS DE NAVEGAÇÃO DOS PRESCRITORES -->
+    <nav class="sub-abas-navegacao">
+        <button class="aba-btn-prescritor ativa" data-aba-presc="clinica-expansao">CLÍNICA MÉDICA EXPANSÃO</button>
+        <button class="aba-btn-prescritor" data-aba-presc="prescritor-1andar">PRESCRITOR 1º ANDAR</button>
+        <button class="aba-btn-prescritor" data-aba-presc="prescritor-3andar">PRESCRITOR 3º ANDAR</button>
+        <button class="aba-btn-prescritor" data-aba-presc="clinica-extra">CLÍNICA MÉDICA EXTRA</button>
+    </nav>
+
+    <!-- TABELAS COM AS 5 COLUNAS PEDIDAS -->
+    <div id="clinica-expansao" class="aba-conteudo-presc ativa">
+        <h2>CLÍNICA MÉDIACA EXPANSÃO (CME)</h2>
+        <div class="overflow-tabela">
+            <table id="tabelaExpansao">
+                <thead><tr></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="prescritor-1andar" class="aba-conteudo-presc">
+        <h2>PRESCRITOR 1º ANDAR</h2>
+        <div class="overflow-tabela">
+            <table id="tabela1Andar">
+                <thead><tr></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="prescritor-3andar" class="aba-conteudo-presc">
+        <h2>PRESCRITOR 3º ANDAR</h2>
+        <div class="overflow-tabela">
+            <table id="tabela3Andar">
+                <thead><tr></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="clinica-extra" class="aba-conteudo-presc">
+        <h2>CLÍNICA MÉDICA EXTRA</h2>
+        <div class="overflow-tabela">
+            <table id="tabelaExtra">
+                <thead><tr></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</main>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -19,6 +19,6 @@ document.getElementById('formLogin').addEventListener('submit', async (e) => {
         msgErro.textContent = `Falha no login: ${error.message}`
     } else {
         // Se der certo, redireciona para a tela do painel hospitalar
-        window.location.href = 'index.html'
+        window.location.href = './painel.html'
     }
 })

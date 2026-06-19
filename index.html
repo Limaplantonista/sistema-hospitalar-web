@@ -3,79 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Hospitalar - Painel de Gestão</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sistema Hospitalar - Login</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body class="corpo-login">
 
-    <header class="barra-superior">
-        <span id="lblUser">Usuário: Carregando...</span>
-        <button id="btnSair">Sair</button>
-    </header>
-
-    <nav class="abas-navegacao">
-        <button class="aba-btn ativa" data-aba="nova-transferencia">Nova Transferência</button>
-        <button class="aba-btn" data-aba="pendentes">Transferências Pendentes</button>
-        <button class="aba-btn" data-aba="concluidas">Transferências Concluídas</button>
-    </nav>
-
-    <main class="conteudo-principal">
+    <div class="container-login">
+        <!-- Restaurado para o título original puro -->
+        <h2>Acesso ao Sistema</h2>
+        <p>Insira suas credenciais de plantonista</p>
         
-        <section id="nova-transferencia" class="aba-conteudo ativa">
-            <form id="formTransferencia" class="grade-formulario">
-                <div class="coluna-form">
-                    <div class="campo"><label>Data Ent. Emergência:</label><input type="text" id="txtDataEnt" placeholder="DD/MM/AAAA"></div>
-                    <div class="campo"><label>Hora Ent. Emergência:</label><input type="text" id="txtHoraEnt" placeholder="HH:MM"></div>
-                    <div class="campo"><label>Início Transferência:</label><input type="text" id="txtIniTrans"></div>
-                    <div class="campo"><label>Chefe de Equipe:</label><input type="text" id="txtChefe"></div>
-                    <div class="campo"><label>Residente:</label><input type="text" id="txtResidente"></div>
-                    <div class="campo"><label>Regulação:</label><input type="text" id="txtRegulacao"></div>
-                    <div class="campo"><label>Origem / Ala:</label><input type="text" id="txtOrigem"></div>
-                    <div class="campo"><label>Leito Origem:</label><input type="text" id="txtLeitoOrigem"></div>
-                    <div class="campo"><label>Destino / Ala:</label><input type="text" id="txtDestino"></div>
-                    <div class="campo"><label>Leito Destino:</label><input type="text" id="txtLeitoDestino"></div>
-                </div>
-
-                <div class="coluna-form">
-                    <div class="campo"><label>Especialidade:</label><input type="text" id="txtEspecialidade"></div>
-                    <div class="campo"><label>Nº Prontuário *:</label><input type="text" id="txtProntuario" required></div>
-                    <div class="campo"><label>Nome do Paciente *:</label><input type="text" id="txtPaciente" required></div>
-                    <div class="campo"><label>Horário Avisado:</label><input type="text" id="txtHoraAvisado"></div>
-                    <div class="campo"><label>Enfermeiro Ciente:</label><input type="text" id="txtEnfermeiro"></div>
-                    <div class="campo"><label>Checado por Plantonista:</label><input type="text" id="txtPlantonista"></div>
-                    <div class="campo"><label>Data Chegada Leito:</label><input type="text" id="txtDataCheg"></div>
-                    <div class="campo"><label>Horário Chegada Leito:</label><input type="text" id="txtHorarioCheg"></div>
-                    <div class="campo">
-                        <label>Status Inicial:</label>
-                        <select id="cbStatus">
-                            <option value="PENDING" selected>PENDING</option>
-                            <option value="COMPLETED">COMPLETED</option>
-                        </select>
-                    </div>
-                    <button type="submit" id="btnSalvar">✓ Salvar Nova Transferência</button>
-                </div>
-            </form>
-        </section>
-
-        <section id="pendentes" class="aba-conteudo">
-            <div class="overflow-tabela">
-                <table id="tabelaPendentes">
-                    <thead><tr></tr></thead>
-                    <tbody></tbody>
-                </table>
+        <form id="formLogin">
+            <div class="campo-login">
+                <label>E-mail:</label>
+                <input type="email" id="txtEmail" placeholder="medico@hospital.com" required>
             </div>
-        </section>
-
-        <section id="concluidas" class="aba-conteudo">
-            <div class="overflow-tabela">
-                <table id="tabelaConcluidas">
-                    <thead><tr></tr></thead>
-                    <tbody></tbody>
-                </table>
+            
+            <div class="campo-login">
+                <label>Senha:</label>
+                <input type="password" id="txtSenha" placeholder="••••••••" required>
             </div>
-        </section>
-    </main>
+            
+            <button type="submit" id="btnEntrar">Entrar no Sistema</button>
+            
+            <p class="link-cadastro" style="text-align: center; margin-top: 15px;">
+                Não tem conta? <a href="./cadastro.html">Cadastre-se aqui</a>
+            </p>
+        </form>
+        
+        <p id="msgErro" class="erro-login"></p>
+    </div>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="./login.js"></script>
 </body>
 </html>

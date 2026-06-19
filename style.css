@@ -1,3 +1,6 @@
+/* ==========================================================================
+   RESET PADRÃO E CONFIGURAÇÕES GERAIS DO SISTEMA
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +13,10 @@ body {
     color: #333;
 }
 
+
+/* ==========================================================================
+   BARRA SUPERIOR (CABEÇALHO E CONTROLE DE USUÁRIO)
+   ========================================================================== */
 .barra-superior {
     background-color: #2c3e50;
     color: white;
@@ -30,6 +37,54 @@ body {
     cursor: pointer;
 }
 
+
+/* ==========================================================================
+   🗂️ 1º NÍVEL DE NAVEGAÇÃO: ABAS PRINCIPAIS (MÓDULOS DO TOPO)
+   ========================================================================== */
+.abas-navegacao-principal {
+    background-color: #2c3e50; /* Acompanha o tom escuro da barra superior */
+    display: flex;
+    padding-left: 15px;
+    border-bottom: 2px solid #1a252f;
+}
+
+.aba-principal-btn {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #bdc3c7;
+    transition: all 0.2s;
+}
+
+.aba-principal-btn.ativa {
+    color: white;
+    background-color: #1a252f;
+    border-bottom: 3px solid #2ecc71; /* Linha verde clássica */
+}
+
+/* Ajuste específico para a aba ativa de prescritores ganhar destaque azul */
+.aba-principal-btn[data-aba-principal="bloco-prescritores"].ativa {
+    border-bottom: 3px solid #3498db;
+}
+
+/* Gerenciamento de Visibilidade dos Blocos Grandes */
+.aba-principal-conteudo {
+    display: none;
+}
+
+.aba-principal-conteudo.ativa {
+    display: block !important;
+}
+
+
+/* ==========================================================================
+   📂 2º NÍVEL DE NAVEGAÇÃO: SUB-ABAS INTERNAS DOS MÓDULOS
+   ========================================================================== */
+
+/* --- SUB-ABAS: MÓDULO DE TRANSFERÊNCIAS --- */
 .abas-navegacao {
     background-color: #fff;
     display: flex;
@@ -52,25 +107,78 @@ body {
     border-bottom: 3px solid #2ecc71;
 }
 
-.conteudo-principal {
-    padding: 30px;
+/* --- SUB-ABAS: MÓDULO DE LISTA DE PRESCRITORES --- */
+.sub-abas-navegacao {
+    background-color: #fff;
+    display: flex;
+    border-bottom: 2px solid #ddd;
 }
 
-.aba-conteudo {
+.aba-btn-prescritor {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #7f8c8d;
+    transition: all 0.2s;
+}
+
+.aba-btn-prescritor.ativa {
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db; /* Azul para diferenciar */
+}
+
+/* Gerenciamento Geral de Exibição de Sub-Abas */
+.aba-conteudo, .aba-conteudo-presc {
     display: none;
 }
 
-.aba-conteudo.ativa {
+.aba-conteudo.ativa, .aba-conteudo-presc.ativa {
     display: block;
 }
 
-/* Duas Colunas Exatas - Igual ColumnConstraints do JavaFX */
+
+/* ==========================================================================
+   TÍTULOS DAS SEÇÕES E INTERFACES VISUAIS
+   ========================================================================== */
+
+/* Cabeçalho em formato de faixa/banner para destacar o nome do prescritor */
+.aba-conteudo-presc h2 {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    
+    /* Cores de destaque (Fundo azul acinzentado com texto branco) */
+    background-color: #546e7a; 
+    color: white;
+    
+    /* Espaçamento e desenho da faixa */
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-transform: uppercase; /* Força o nome do setor a ficar em maiúsculo */
+    
+    /* Efeito de sombra leve para dar profundidade */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+}
+
+/* Espaçamento geral do miolo da página */
+.conteudo-principal {
+    padding: 15px 30px; /* Reduzido em cima e embaixo para achatar a página */
+}
+
+/* ==========================================================================
+   ESTRUTURA DO FORMULÁRIO (DUAS COLUNAS ESTILO JAVAFX)
+   ========================================================================== */
 .grade-formulario {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 8px 30px; /* Reduzido o espaço vertical entre linhas para 8px, mantendo os 30px de largura */
     background: white;
-    padding: 30px;
+    padding: 15px 25px; /* Reduzido o preenchimento interno da caixa do formulário */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
@@ -78,7 +186,7 @@ body {
 .coluna-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px; /* Aproxima os campos verticalmente dentro da coluna */
 }
 
 .campo {
@@ -93,21 +201,37 @@ body {
     color: #2c3e50;
 }
 
+
+/* ==========================================================================
+   BLINDAGEM, ALTURA E PADRONIZAÇÃO VISUAL DOS CAMPOS DE ENTRADA
+   ========================================================================== */
 .campo input, .campo select {
     width: 100%;
-    padding: 8px 12px;
+    padding: 5px 10px; /* Reduzido a altura interna para achatar as caixas de texto */
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 13px; /* Fonte levemente menor para harmonizar com o achatamento */
+    background-color: white; /* Fundo branco para não sumir no navegador */
+    color: #333;
+    height: 30px; /* Altura exata para forçar o alinhamento das listas com o texto */
 }
 
+/* Força a exibição em letras maiúsculas nos campos de texto indicados */
+#txtChefe, #txtResidente, #txtPaciente, #txtEnfermeiro, #txtPlantonista {
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   BOTÃO DE CADASTRO/ENVIO DO FORMULÁRIO PRINCIPAL
+   ========================================================================== */
 #btnSalvar {
-    margin-top: 15px;
+    margin-top: 5px; /* Reduzido o espaço acima do botão */
     background-color: #2ecc71;
     color: white;
     border: none;
-    padding: 14px;
-    font-size: 16px;
+    padding: 8px; /* Botão mais fino e achatado para poupar espaço vertical */
+    font-size: 15px;
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
@@ -119,12 +243,47 @@ body {
     background-color: #27ae60;
 }
 
-/* Tabelas */
+
+/* ==========================================================================
+   🔍 MINI-PAINEL DINÂMICO: LISTA DE PACIENTES POR ESPECIALIDADE
+   ========================================================================== */
+#container-lista-especialidade {
+    grid-column: span 2; /* Faz a lista ocupar a largura total abaixo das colunas */
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-top: 10px;
+}
+
+#container-lista-especialidade h3 {
+    font-size: 14px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #2ecc71;
+    padding-bottom: 4px;
+}
+
+#lista-pacientes-especialidade li {
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+#lista-pacientes-especialidade li:last-child {
+    border-bottom: none;
+}
+
+
+/* ==========================================================================
+   ESTILIZAÇÃO DE GRADES E TABELAS DE DADOS DO HOSPITAL
+   ========================================================================== */
 .overflow-tabela {
     overflow-x: auto;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-top: 10px;
 }
 
 table {
@@ -150,6 +309,10 @@ tr:hover {
     background-color: #f1f2f6;
 }
 
+
+/* ==========================================================================
+   ELEMENTOS DE DESTAQUE: BADGES DE STATUS (PENDING / COMPLETED)
+   ========================================================================== */
 .badge {
     padding: 4px 8px;
     border-radius: 4px;
@@ -160,6 +323,10 @@ tr:hover {
 .badge.pending { background-color: #ffeaa7; color: #d63031; }
 .badge.completed { background-color: #badc58; color: #6ab04c; }
 
+
+/* ==========================================================================
+   BOTÕES DE AÇÕES DAS TABELAS (CONCLUIR E EDITAR REGISTROS)
+   ========================================================================== */
 .btn-concluir-tabela {
     background-color: #3498db;
     color: white;
@@ -167,8 +334,28 @@ tr:hover {
     padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
 }
-/* Estilos para a Tela de Login */
+
+td button.btn-concluir-tabela {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+/* Configurações Específicas do Botão Editar (Fundo Laranja) */
+.btn-concluir-tabela[style*="background-color: #f39c12"] {
+    font-weight: 600;
+}
+
+.btn-concluir-tabela[style*="background-color: #f39c12"]:hover {
+    background-color: #d35400 !important; /* Laranja mais escuro no hover */
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   TELA DE LOGIN
+   ========================================================================== */
 .corpo-login {
     background-color: #2c3e50;
     display: flex;
