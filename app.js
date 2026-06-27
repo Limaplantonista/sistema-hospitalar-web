@@ -10,13 +10,18 @@ if (!session) {
     document.getElementById('lblUser').textContent = `Usuário: ${session.user.email}`;
 }
 
-// Configura o botão Sair que já existe no seu HTML
+//================================================================================
+//                 BOTAO DE "SAIR" NO HOLDER DO PAINEL COM LOGOUT
+//================================================================================
 document.getElementById('btnSair').addEventListener('click', async () => {
     await supabase.auth.signOut();
     window.location.href = './index.html';
 });
+//////////////////////////////////////////////////////////////////////////////////
 
-// --- 🩺 MÁSCARAS DE PADRONIZAÇÃO DE DATA E HORA (SEM PREENCHIMENTO AUTOMÁTICO) ---
+//================================================================================
+//         MÁSCARAS DE PADRONIZAÇÃO DE DATA E HORA (SEM PREENCHIMENTO AUTOMÁTICO) 
+//================================================================================
 window.addEventListener('DOMContentLoaded', () => {
     // 1. Aplicar Máscara de Data (DD/MM/AAAA) nos campos correspondentes
     const camposData = ['txtDataEnt', 'txtIniTrans', 'txtDataCheg'];
@@ -50,9 +55,10 @@ window.addEventListener('DOMContentLoaded', () => {
     escutarMudancaEspecialidade();
 });
 
+//////////////////////////////////////////////////////////////////////////////////
 const colunasTabela = [
-    "Data Ent.", "Hora Ent.", "Início Transf.", "Chefe Equipe", "Residente", "Regulação",
-    "Origem/Ala", "Leito Orig.", "Destino/Ala", "Leito Dest.", "Especialidade", "Prontuário",
+    "Data Ent.", "Hora Ent.", "Início Transf.", "Chefe Equipe", "Residente", "Regulação", 
+    "Origem/Ala", "Leito Orig.", "Destino/Ala", "Leito Dest.", "Especialidade", "Prontuário",  
     "Paciente", "Hora Avisado", "Enf. Ciente", "Checado Plant.", "Data Cheg.", "Hora Cheg.", "Status"
 ];
 
@@ -105,7 +111,6 @@ document.getElementById('formTransferencia').addEventListener('submit', async (e
         data_entrada_emergencia: document.getElementById('txtDataEnt').value,
         hora_entrada_emergencia: document.getElementById('txtHoraEnt').value,
         inicio_transferencia: document.getElementById('txtIniTrans').value,
-        // MODIFICADO: Salva em letras maiúsculas
         chefe_equipe: document.getElementById('txtChefe').value.trim().toUpperCase(),
         residente: document.getElementById('txtResidente').value.trim().toUpperCase(),
         regulacao: document.getElementById('txtRegulacao').value,
@@ -115,7 +120,6 @@ document.getElementById('formTransferencia').addEventListener('submit', async (e
         leito_destino: document.getElementById('txtLeitoDestino').value,
         especialidade: document.getElementById('txtEspecialidade').value,
         prontuario: document.getElementById('txtProntuario').value,
-        // MODIFICADO: Salva em letras maiúsculas
         paciente: document.getElementById('txtPaciente').value.trim().toUpperCase(),
         hora_avisado: document.getElementById('txtHoraAvisado').value,
         enfermeiro_ciente: document.getElementById('txtEnfermeiro').value.trim().toUpperCase(),
@@ -169,6 +173,8 @@ document.getElementById('formTransferencia').addEventListener('submit', async (e
     }
 
 })
+
+////////////////////////////////////////////////////////////////////////////////////////////
 
 async function carregarDadosSupabase(statusFiltro, idTabela) {
     const tabela = document.getElementById(idTabela)
@@ -302,6 +308,8 @@ async function carregarDadosSupabase(statusFiltro, idTabela) {
     })
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
 async function alterarStatusParaConcluido(idAlvo) {
     if (!confirm("Deseja marcar esta transferência como concluída (COMPLETED)?")) return
 
@@ -318,55 +326,6 @@ async function alterarStatusParaConcluido(idAlvo) {
     }
 }
 
-// --- 🔍 LISTAR PACIENTES DO SUPABASE POR ESPECIALIDADE EM TEMPO REAL ---
-function escutarMudancaEspecialidade() {
-    const campoEspecialidade = document.getElementById('txtEspecialidade');
-    const containerLista = document.getElementById('container-lista-especialidade');
-    const tituloLista = document.getElementById('titulo-lista-especialidade');
-    const listaPacientes = document.getElementById('lista-pacientes-especialidade');
-
-    if (!campoEspecialidade) return;
-
-    campoEspecialidade.addEventListener('change', async (e) => {
-        const espSelecionada = e.target.value;
-
-        if (!espSelecionada) {
-            if (containerLista) containerLista.style.display = 'none';
-            return;
-        }
-
-        if (tituloLista) tituloLista.textContent = `Buscando pacientes de ${espSelecionada}...`;
-        if (listaPacientes) listaPacientes.innerHTML = '<li style="padding: 5px 0; color: #666;">Carregando...</li>';
-        if (containerLista) containerLista.style.display = 'block';
-
-        const { data, error } = await supabase
-            .from('transferencias')
-            .select('paciente, leito_origem, destino_ala')
-            .eq('especialidade', espSelecionada)
-            .eq('status', 'PENDING');
-
-        if (error) {
-            if (listaPacientes) listaPacientes.innerHTML = `<li style="color: red;">Erro: ${error.message}</li>`;
-            return;
-        }
-
-        if (!data || data.length === 0) {
-            if (tituloLista) tituloLista.textContent = `Pacientes: ${espSelecionada}`;
-            if (listaPacientes) listaPacientes.innerHTML = '<li style="padding: 8px 0; color: #888; font-style: italic;">Nenhum paciente pendente nesta especialidade.</li>';
-            return;
-        }
-
-        if (tituloLista) tituloLista.textContent = `Pacientes em ${espSelecionada} (${data.length})`;
-        if (listaPacientes) {
-            listaPacientes.innerHTML = data.map(item => `
-                <li style="padding: 10px 0; border-bottom: 1px solid #eee; color: #333;">
-                    <strong>📌 ${item.paciente}</strong> <br>
-                    <small style="color: #666;">Origem: Leito ${item.leito_origem || 'N/I'} -> Destino: ${item.destino_ala || 'N/I'}</small>
-                </li>
-            `).join('');
-        }
-    });
-}
 // --- 📂 CONTROLADOR DE SUB-ABAS DOS PRESCRITORES ---
 const botoesPrescritor = document.querySelectorAll('.aba-btn-prescritor');
 const conteudosPrescritor = document.querySelectorAll('.aba-conteudo-presc');
@@ -401,8 +360,6 @@ async function carregarPrescritoresDoForm(especialidadeFiltro, idTabela) {
     theadRow.innerHTML = colunasPrescritores.map(col => `<th>${col}</th>`).join('');
     tbody.innerHTML = '<tr><td colspan="5">Filtrando dados das transferências...</td></tr>';
 
-    // Busca apenas as 5 informações necessárias na tabela existente do Supabase
-       // MODIFICADO: Trocado 'origem_ala' por 'regulacao' na busca
     const { data, error } = await supabase
         .from('transferencias')
         .select('inicio_transferencia, regulacao, paciente, prontuario, leito_destino')
@@ -421,7 +378,6 @@ async function carregarPrescritoresDoForm(especialidadeFiltro, idTabela) {
     tbody.innerHTML = '';
     data.forEach(item => {
         const linha = document.createElement('tr');
-        // MODIFICADO: Trocado item.origem_ala por item.regulacao na segunda coluna
         linha.innerHTML = `
             <td>${item.inicio_transferencia || ''}</td>
             <td>${item.regulacao || ''}</td>

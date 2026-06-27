@@ -280,38 +280,6 @@ body {
     background-color: #27ae60;
 }
 
-
-/* ==========================================================================
-   🔍 MINI-PAINEL DINÂMICO: LISTA DE PACIENTES POR ESPECIALIDADE
-   ========================================================================== */
-#container-lista-especialidade {
-    grid-column: span 2; /* Faz a lista ocupar a largura total abaixo das colunas */
-    border: 1px solid #ddd;
-    background-color: #f8f9fa;
-    border-radius: 6px;
-    padding: 12px 20px;
-    margin-top: 10px;
-}
-
-#container-lista-especialidade h3 {
-    font-size: 14px;
-    color: #2c3e50;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #2ecc71;
-    padding-bottom: 4px;
-}
-
-#lista-pacientes-especialidade li {
-    font-size: 13px;
-    padding: 6px 0;
-    border-bottom: 1px solid #eaeaea;
-}
-
-#lista-pacientes-especialidade li:last-child {
-    border-bottom: none;
-}
-
-
 /* ==========================================================================
     ESTILIZAÇÃO DE GRADES E TABELAS DE DADOS DO HOSPITAL
    ========================================================================== */

@@ -8,18 +8,25 @@
 </head>
 <body>
 
+    <!-- ==========================================
+           CABECARIO, PARTE SUPERIOR DO SITE
+        ========================================== -->
+    
     <header class="barra-superior">
         <span id="lblUser">Usuário: Carregando...</span>
         <button id="btnSair">Sair</button>
     </header>
 
+    <!-- ==========================================
+           NAVEGAÇÃO PRINCIPAL ENTRE AS ABAS
+         ========================================== -->
     <nav class="abas-navegacao-principal">
         <button class="aba-principal-btn ativa" data-aba-principal="bloco-transferencias">Transferências</button>
         <button class="aba-principal-btn" data-aba-principal="bloco-prescritores">Lista de Prescritores</button>
         <button class="aba-principal-btn" data-aba-principal="bloco-ectopico">Lista de Ectópicos</button>
     </nav>
      <!-- ==========================================
-           BLOCO 1: ABA PRINCIPAL DE TRANSFERÊNCIAS 
+           BLOCO 1:    TRANSFERÊNCIAS 
           ========================================== -->
     <div id="bloco-transferencias" class="aba-principal-conteudo ativa">
     
@@ -243,11 +250,11 @@
                     </div>
                     <div class="campo"><label>Nº Prontuário *:</label><input type="text" id="txtProntuario" required></div>
                     <div class="campo"><label>Nome do Paciente *:</label><input type="text" id="txtPaciente" required></div>
-                    <div class="campo"><label>Horário Avisado:</label><input type="text" id="txtHoraAvisado"></div>
+                    <div class="campo"><label>Horário Avisado:</label><input type="text" id="txtHoraAvisado" placeholder="HH:MM"></div>
                     <div class="campo"><label>Enfermeiro Ciente:</label><input type="text" id="txtEnfermeiro"></div>
                     <div class="campo"><label>Checado por Plantonista:</label><input type="text" id="txtPlantonista"></div>
-                    <div class="campo"><label>Data Chegada Leito:</label><input type="text" id="txtDataCheg"></div>
-                    <div class="campo"><label>Horário Chegada Leito:</label><input type="text" id="txtHorarioCheg"></div>
+                    <div class="campo"><label>Data Chegada Leito:</label><input type="text" id="txtDataCheg" placeholder="DD/MM/AAAA"></div>
+                    <div class="campo"><label>Horário Chegada Leito:</label><input type="text" id="txtHorarioCheg" placeholder="HH:MM"></div>
                     <div class="campo">
                         <label>Status Inicial:</label>
                         <select id="cbStatus">
