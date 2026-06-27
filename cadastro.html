@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Hospitalar - Cadastro</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="corpo-login">
+
+    <div class="container-login">
+        <h2>Criar Nova Conta</h2>
+        <p>Cadastre suas credenciais de plantonista</p>
+        
+        <form id="formCadastro">
+            <div class="campo-login">
+                <label>E-mail Corporativo:</label>
+                <input type="email" id="txtEmailCadastro" placeholder="medico@hospital.com" required>
+            </div>
+            
+            <div class="campo-login">
+                <label>Senha:</label>
+                <input type="password" id="txtSenhaCadastro" placeholder="Mínimo 6 caracteres" minlength="6" required>
+            </div>
+            
+            <!-- Botão azul seguindo o padrão do seu style.css -->
+            <button type="submit" id="btnEntrar">Registrar no Sistema</button>
+            
+            <p style="text-align: center; margin-top: 15px; font-size: 14px; color: #7f8c8d;">
+                Já tem uma conta? <a href="./index.html">Voltar para o Login</a>
+            </p>
+        </form>
+        
+        <!-- Local onde o erro do Supabase ou sucesso vai aparecer -->
+        <p id="msgErroCadastro" class="erro-login"></p>
+    </div>
+
+    <!-- Script de controle do cadastro -->
+    <script type="module" src="./cadastro.js"></script>
+</body>
+</html>

@@ -16,6 +16,7 @@
     <nav class="abas-navegacao-principal">
         <button class="aba-principal-btn ativa" data-aba-principal="bloco-transferencias">Transferências</button>
         <button class="aba-principal-btn" data-aba-principal="bloco-prescritores">Lista de Prescritores</button>
+        <button class="aba-principal-btn" data-aba-principal="bloco-ectopico">Lista de Ectópicos</button>
     </nav>
      <!-- ==========================================
            BLOCO 1: ABA PRINCIPAL DE TRANSFERÊNCIAS 
@@ -285,15 +286,15 @@
     
     <!-- SUB-ABAS DE NAVEGAÇÃO DOS PRESCRITORES -->
     <nav class="sub-abas-navegacao">
-        <button class="aba-btn-prescritor ativa" data-aba-presc="clinica-expansao">CLÍNICA MÉDICA EXPANSÃO</button>
-        <button class="aba-btn-prescritor" data-aba-presc="prescritor-1andar">PRESCRITOR 1º ANDAR</button>
-        <button class="aba-btn-prescritor" data-aba-presc="prescritor-3andar">PRESCRITOR 3º ANDAR</button>
-        <button class="aba-btn-prescritor" data-aba-presc="clinica-extra">CLÍNICA MÉDICA EXTRA</button>
+        <button class="aba-btn-prescritor ativa" data-aba-presc="clinica-expansao">Clínica Médica Expansão</button>
+        <button class="aba-btn-prescritor" data-aba-presc="prescritor-1andar">Preceitor 1º Andar</button>
+        <button class="aba-btn-prescritor" data-aba-presc="prescritor-3andar">Preceitor 3º Andar</button>
+        <button class="aba-btn-prescritor" data-aba-presc="clinica-extra">Clínica Médica Extra</button>
     </nav>
 
     <!-- TABELAS COM AS 5 COLUNAS PEDIDAS -->
     <div id="clinica-expansao" class="aba-conteudo-presc ativa">
-        <h2>CLÍNICA MÉDIACA EXPANSÃO (CME)</h2>
+        <h2>CLÍNICA MÉDICA EXPANSÃO (CME)</h2>
         <div class="overflow-tabela">
             <table id="tabelaExpansao">
                 <thead><tr></tr></thead>
@@ -331,8 +332,24 @@
             </table>
         </div>
     </div>
-
 </div>
+
+  <div id="bloco-ectopico" class="aba-principal-conteudo">
+
+      <nav class="sub-abas-ectopico">
+        <button class="aba-btn-ectopico ativa" data-aba-ectopico="ectopico-pendente">Ectopico Pendente</button>
+        <button class="aba-btn-ectopico" data-aba-ectopico="ectopico-resolvido">Ectópico Resolvido</button>
+      </nav>
+
+      <div id="ectopico-pendente" class="aba-conteudo ativa">
+        <p>Conteúdo dos casos pendentes aqui...</p>
+      </div>
+
+      <div id="ectopico-resolvido" class="aba-conteudo">
+        <p>Conteúdo dos casos resolvidos aqui...</p>
+      </div>
+  </div>
+
 </main>
     <script type="module" src="app.js"></script>
 </body>

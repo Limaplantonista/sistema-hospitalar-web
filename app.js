@@ -405,7 +405,7 @@ async function carregarPrescritoresDoForm(especialidadeFiltro, idTabela) {
        // MODIFICADO: Trocado 'origem_ala' por 'regulacao' na busca
     const { data, error } = await supabase
         .from('transferencias')
-        .select('data_entrada_emergencia, regulacao, paciente, prontuario, leito_origem')
+        .select('inicio_transferencia, regulacao, paciente, prontuario, leito_destino')
         .eq('especialidade', especialidadeFiltro);
 
     if (error) {
@@ -423,13 +423,45 @@ async function carregarPrescritoresDoForm(especialidadeFiltro, idTabela) {
         const linha = document.createElement('tr');
         // MODIFICADO: Trocado item.origem_ala por item.regulacao na segunda coluna
         linha.innerHTML = `
-            <td>${item.data_entrada_emergencia || ''}</td>
+            <td>${item.inicio_transferencia || ''}</td>
             <td>${item.regulacao || ''}</td>
             <td><strong>${item.paciente || ''}</strong></td>
             <td>${item.prontuario || ''}</td>
-            <td>${item.leito_origem || ''}</td>
+            <td>${item.leito_destino || ''}</td>
         `;
         tbody.appendChild(linha);
     });
 
 }
+
+//================================================================================
+// ABAS DO BLOCO ECTÓPICO (RESOLVIDO / NÃO RESOLVIDO) - FUNCIONAMENTO SIMPLES
+//================================================================================
+
+// 1. Seleciona todos os botões de aba do bloco ectópico
+const botoesEctopico = document.querySelectorAll('.aba-btn-ectopico');
+// 2. Seleciona todos os blocos de conteúdo relacionados
+const conteudosEctopico = document.querySelectorAll('.aba-conteudo');
+
+botoesEctopico.forEach(botao => {
+    botao.addEventListener('click', () => {
+        // --- PASSO 1: CONTROLAR OS BOTÕES ---
+        // Remove a classe 'ativa' de todos os botões para apagar a linha verde deles
+        botoesEctopico.forEach(b => b.classList.remove('ativa'));
+        // Adiciona 'ativa' apenas no botão clicado (ele ganha a linha verde)
+        botao.classList.add('ativa');
+
+        // --- PASSO 2: CONTROLAR O CONTEÚDO ---
+        // Esconde todos os blocos de conteúdo removendo a classe 'ativa'
+        conteudosEctopico.forEach(conteudo => conteudo.classList.remove('ativa'));
+
+        // Pega o ID da aba que queremos mostrar através do 'data-aba-ectopico'
+        const idAbaAlvo = botao.getAttribute('data-aba-ectopico');
+        
+        // Encontra a div correspondente pelo ID (ex: #ectopico-resolvido) e mostra ela
+        const abaAlvo = document.getElementById(idAbaAlvo);
+        if (abaAlvo) {
+            abaAlvo.classList.add('ativa');
+        }
+    });
+});

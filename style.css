@@ -67,7 +67,9 @@ body {
 
 /* Ajuste específico para a aba ativa de prescritores ganhar destaque azul */
 .aba-principal-btn[data-aba-principal="bloco-prescritores"].ativa {
-    border-bottom: 3px solid #3498db;
+    color: white;
+    background-color: #1a252f;
+    border-bottom: 3px solid #2ecc71; /* Linha verde clássica */
 }
 
 /* Gerenciamento de Visibilidade dos Blocos Grandes */
@@ -127,7 +129,7 @@ body {
 
 .aba-btn-prescritor.ativa {
     color: #2c3e50;
-    border-bottom: 3px solid #3498db; /* Azul para diferenciar */
+    border-bottom: 3px solid #2ecc71;
 }
 
 /* Gerenciamento Geral de Exibição de Sub-Abas */
@@ -136,6 +138,41 @@ body {
 }
 
 .aba-conteudo.ativa, .aba-conteudo-presc.ativa {
+    display: block;
+}
+
+/* --- SUB-ABAS: MÓDULO DE LISTA DE PRESCRITORES --- */
+
+.sub-abas-ectopico {
+    background-color: #fff;
+    display: flex;
+    border-bottom: 2px solid #ddd;
+}
+
+.aba-btn-ectopico {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #7f8c8d;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent; /* Evita que o botão "pule" quando ficar ativo */
+}
+
+.aba-btn-ectopico.ativa {
+    color: #2c3e50;
+    border-bottom: 3px solid #2ecc71;
+    margin-bottom: -2px; /* Faz a linha verde cobrir a linha cinza do nav */
+}
+
+/* Gerenciamento Geral de Exibição */
+.aba-conteudo {
+    display: none;
+}
+
+.aba-conteudo.ativa {
     display: block;
 }
 
@@ -276,7 +313,7 @@ body {
 
 
 /* ==========================================================================
-   ESTILIZAÇÃO DE GRADES E TABELAS DE DADOS DO HOSPITAL
+    ESTILIZAÇÃO DE GRADES E TABELAS DE DADOS DO HOSPITAL
    ========================================================================== */
 .overflow-tabela {
     overflow-x: auto;
@@ -291,6 +328,13 @@ table {
     border-collapse: collapse;
     font-size: 13px;
     text-align: left;
+}
+
+/* 👇 ADICIONE ESTE BLOCO PARA REDUZIR O ESPAÇO DAS LINHAS 👇 */
+table th, 
+table td {
+    padding: 6px 12px; /* O primeiro número (6px) controla a altura da linha. Reduza se quiser ainda menor! */
+    border-bottom: 1px solid #eee; /* Linha sutil divisória entre os dados */
 }
 
 th, td {
